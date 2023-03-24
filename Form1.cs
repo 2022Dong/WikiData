@@ -30,15 +30,25 @@ namespace WikiData
         // ComboBox for the Category, Radio group for the Structure and Multiline TextBox for the Definition. 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // error trapping in the Information class   - to be fixed
+            stsMsglbl.Text = "";
+            // error trapping in the Information class   - to be fixed  eg.empty input
             Information addData = new Information();
-            addData.setName(txtName.Text);
-            // addData.setCategory(GetManufacturerRadioButton());
-            //addData.setStructure(GetAccessoriesCheckBox());
-            addData.setDefinition(txtDefinition.Text);
-            wiki.Add(addData);
-            DisplayData();
-            ClearResetInput();
+            bool isValid = ValidName(txtName.Text); // Calling ValidName method.
+            if (isValid)
+            {
+                addData.setName(txtName.Text);
+                // addData.setCategory(GetManufacturerRadioButton());
+                addData.setStructure(getStructure());
+                addData.setDefinition(txtDefinition.Text);
+                wiki.Add(addData);
+                stsMsglbl.Text = "Successfully added";
+                DisplayData();
+                ClearResetInput();
+            }
+            else
+            {
+                stsMsglbl.Text = "Add failed, duplicata name";
+            }                       
         }
         // 6.7 Create a button method that will delete the currently selected record in the ListView.
         // Ensure the user has the option to backout of this action by using a dialog box.
@@ -62,6 +72,7 @@ namespace WikiData
         // and highlight the name in the ListView. At the end of the search process the search input TextBox must be cleared.
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            stsMsglbl.Text = "";
             //wiki.Sort();
             if (string.IsNullOrEmpty(txtSearch.Text)) // Check user empty input.
             {
@@ -69,19 +80,19 @@ namespace WikiData
                 return;
             }
 
-            Information searchData = new Information();
-            searchData.setName(txtSearch.Text);
+            Information searchData = new Information();  // Create object.
+            searchData.setName(txtSearch.Text.ToLower());
             int foundIndex = wiki.BinarySearch(searchData);
-            if (foundIndex >= 0) // --- to be fixed
+            if (foundIndex >= 0)
             {                
                 lvDisplay.SelectedItems.Clear();
                 lvDisplay.Items[foundIndex].Selected = true;
                 lvDisplay.Focus();
                 txtName.Text = wiki[foundIndex].getName();
                 //cbo.Text = wiki[foundIndex].getCategory();
-                //SetRdoStructure(foundIndex);
+                setStructure(foundIndex);
                 txtDefinition.Text = wiki[foundIndex].getDefinition();
-                stsMsglbl.Text = "Fond in row " + (foundIndex + 1);
+                stsMsglbl.Text = txtName.Text + " fond in row " + (foundIndex + 1);
             }
             else
             {
@@ -128,12 +139,53 @@ namespace WikiData
 
         // 6.5 Create a custom ValidName method which will take a parameter string value from the Textbox Name
         // and returns a Boolean after checking for duplicates.Use the built in List<T> method “Exists” to answer this requirement.
-
+        private bool ValidName(string newName)
+        {
+            foreach(Information data in wiki)
+            {
+                if (wiki.Exists(x => x.getName() == newName.ToLower()))
+                {
+                    return false;
+                }                
+            }
+            return true;
+        }
 
         // 6.6 Create two methods to highlight and return the values from the Radio button GroupBox.
         // The first method must return a string value from the selected radio button(Linear or Non-Linear).
-        // The second method must send an integer index which will highlight an appropriate radio button.
+        // The second method must send an integer index which will highlight an appropriate radio button.  -- TO BE CONFIRMED.
+        private string getStructure()
+        {
+            string rboValue = "";
+            foreach (RadioButton rbo in gbStructure.Controls.OfType<RadioButton>())
+            {
+                if (rbo.Checked)
+                {
+                    rboValue = rbo.Text;
+                    break;
+                }
+                else
+                {
+                    rboValue = "Other";
+                }
+            }
+            return rboValue;
+        }
+        private void setStructure(int rdoIndex)
+        {
+            foreach (RadioButton rbo in gbStructure.Controls.OfType<RadioButton>())
+            {
+                if (rbo.Text == wiki[rdoIndex].getStructure())
+                {
+                    rbo.Checked = true;
+                }
+                else
+                {
+                    rbo.Checked = false;
+                }
 
+            }
+        }
 
         // 6.9 Create a single custom method that will sort and then
         // display the Name and Category from the wiki information in the list.
@@ -154,11 +206,11 @@ namespace WikiData
         private void ClearResetInput()
         {
             txtName.Clear();
-            cboCategory.SelectedIndex = 0; // set the value to the first item in the list
+            // cboCategory.SelectedIndex = 0; // set the value to the first item in the list  -- to be fixed.
             // set all radio buttons to un-checked
-            foreach (RadioButton rb in gbStructure.Controls.OfType<RadioButton>())
+            foreach (RadioButton rbo in gbStructure.Controls.OfType<RadioButton>())
             {
-                rb.Checked = false;
+                rbo.Checked = false;
             }
             txtDefinition.Clear();
         }

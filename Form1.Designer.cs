@@ -35,6 +35,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lvDisplay = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.structure = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.definition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
@@ -46,10 +50,6 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblDefinition = new System.Windows.Forms.Label();
             this.stsMsg = new System.Windows.Forms.StatusStrip();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.structure = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.definition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stsMsglbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbStructure.SuspendLayout();
             this.stsMsg.SuspendLayout();
@@ -137,6 +137,22 @@
             this.lvDisplay.UseCompatibleStateImageBehavior = false;
             this.lvDisplay.View = System.Windows.Forms.View.Details;
             this.lvDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvDisplay_MouseClick);
+            // 
+            // name
+            // 
+            this.name.Text = "Name";
+            // 
+            // category
+            // 
+            this.category.Text = "Category";
+            // 
+            // structure
+            // 
+            this.structure.Text = "Structure";
+            // 
+            // definition
+            // 
+            this.definition.Text = "Definition";
             // 
             // txtSearch
             // 
@@ -250,29 +266,13 @@
             this.stsMsg.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.stsMsg.Size = new System.Drawing.Size(748, 26);
             this.stsMsg.TabIndex = 15;
-            this.stsMsg.Text = "stsMsg";
-            // 
-            // name
-            // 
-            this.name.Text = "Name";
-            // 
-            // category
-            // 
-            this.category.Text = "Category";
-            // 
-            // structure
-            // 
-            this.structure.Text = "Structure";
-            // 
-            // definition
-            // 
-            this.definition.Text = "Definition";
+            this.stsMsg.Text = "Feedback";
             // 
             // stsMsglbl
             // 
             this.stsMsglbl.Name = "stsMsglbl";
-            this.stsMsglbl.Size = new System.Drawing.Size(71, 20);
-            this.stsMsglbl.Text = "stsMsglbl";
+            this.stsMsglbl.Size = new System.Drawing.Size(72, 20);
+            this.stsMsglbl.Text = "Feedback";
             // 
             // FormWiki
             // 

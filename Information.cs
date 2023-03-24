@@ -25,7 +25,7 @@ namespace WikiData
         }
         public void setName(string newName) // Modify
         {
-            name = newName;
+            name = newName.ToLower();
         }
         public string getCategory()
         {
