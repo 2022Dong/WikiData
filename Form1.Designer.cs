@@ -299,6 +299,7 @@
             this.Name = "FormWiki";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wiki";
+            this.Load += new System.EventHandler(this.FormWiki_Load);
             this.gbStructure.ResumeLayout(false);
             this.gbStructure.PerformLayout();
             this.stsMsg.ResumeLayout(false);
