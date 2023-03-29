@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
 /*Dongyun Huang 30042104
  29/3/2023
@@ -83,7 +84,53 @@ namespace WikiData
         // Display an updated version of the sorted list at the end of this process. 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            stsMsglbl.Text = "";
+            // Get the selected item in the ListView control
+            ListViewItem selectedItem = lvDisplay.SelectedItems[0];
+
+            // Get the new values from the input controls
+            string name = txtName.Text.ToLower().Trim();
+
+            // Check if the new name is already in use by another item
+            bool isDuplicate = false;
+            foreach (ListViewItem item in lvDisplay.Items)
+            {
+                if (item != selectedItem && item.SubItems[0].Text == name) // Exclusive the selected item
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            try
+            {
+                // If the name is not a duplicate, update the selected item
+                if (!isDuplicate)
+                {
+                    int selectedIndex = lvDisplay.SelectedIndices[0];
+                    Information editData = new Information();
+
+                    editData.setName(txtName.Text);
+                    editData.setCategory(cboCategory.Text);
+                    editData.setStructure(getStructure());
+                    editData.setDefinition(txtDefinition.Text);
+
+                    wiki[selectedIndex] = editData; // Replace obj.
+                    stsMsglbl.Text = "Successfully edited";
+                    DisplayData();
+                    ClearResetInput();
+                }
+                else
+                {
+                    stsMsglbl.Text = "Edit failed, duplicata name";
+                }
+            }
+            catch
+            {
+                stsMsglbl.Text = "Please select a record to be edited..";
+            }
+
+
+            /*stsMsglbl.Text = "";
             try
             {
                 int selectedIndex = lvDisplay.SelectedIndices[0];
@@ -104,7 +151,7 @@ namespace WikiData
             catch
             {
                 stsMsglbl.Text = "Please select a record to be edited..";
-            }
+            }*/
         }
         #endregion
 
