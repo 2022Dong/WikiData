@@ -5,7 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
+/*Dongyun Huang 30042104
+ 29/3/2023
 
+The Wiki Application to demonstrate how a collection of information can be stored using a Windows Application (WinForms). 
+This application will utilise a List<T> of a class object
+ */
 namespace WikiData
 {
     public partial class FormWiki : Form
@@ -23,23 +28,31 @@ namespace WikiData
         private void btnAdd_Click(object sender, EventArgs e)
         {
             stsMsglbl.Text = "";
-            // error trapping in the Information class   - to be fixed  eg.empty input
             Information addData = new Information();
-            bool isValid = ValidName(txtName.Text); // Calling ValidName method.
-            if (isValid)
+            if (!string.IsNullOrEmpty(txtName.Text))
             {
-                addData.setName(txtName.Text);
-                addData.setCategory(cboCategory.Text);
-                addData.setStructure(getStructure());
-                addData.setDefinition(txtDefinition.Text);
-                wiki.Add(addData);
-                stsMsglbl.Text = "Successfully added";
-                DisplayData();
+                bool isValid = ValidName(txtName.Text); // Calling ValidName method.
+                if (isValid)
+                {
+                    addData.setName(txtName.Text);
+                    addData.setCategory(cboCategory.Text);
+                    addData.setStructure(getStructure());
+                    addData.setDefinition(txtDefinition.Text);
+                    wiki.Add(addData);
+                    stsMsglbl.Text = "Successfully added";
+                    DisplayData();
+                    ClearResetInput();
+                }
+                else
+                {
+                    stsMsglbl.Text = "Add failed, duplicata name";
+                }
             }
             else
             {
-                stsMsglbl.Text = "Add failed, duplicata name";
+                stsMsglbl.Text = "Please enter a name...";
             }
+
         }
 
         // 6.7 Create a button method that will delete the currently selected record in the ListView.
@@ -63,7 +76,7 @@ namespace WikiData
             catch
             {
                 stsMsglbl.Text = "Please select a record to be deleted..";
-            }            
+            }
         }
         // 6.8 Create a button method that will save the edited record of the currently selected item in the ListView.
         // All the changes in the input controls will be written back to the list.
@@ -75,13 +88,12 @@ namespace WikiData
             {
                 int selectedIndex = lvDisplay.SelectedIndices[0];
 
-                // error trapping in the Information class   - to be fixed  eg.empty input
                 Information editData = new Information();
                 editData.setName(txtName.Text);
                 editData.setCategory(cboCategory.Text);
                 editData.setStructure(getStructure());
                 editData.setDefinition(txtDefinition.Text);
-                wiki.RemoveAt(selectedIndex); // Remove the old one, then add a new one.
+                wiki.RemoveAt(selectedIndex); // Remove the old one, then add the new one.
                 wiki.Add(editData);
                 stsMsglbl.Text = "Successfully edited";
                 DisplayData();

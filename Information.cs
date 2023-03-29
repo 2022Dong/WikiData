@@ -4,12 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+/*Dongyun Huang 30042104
+ 29/3/2023
 
+Programming Criteria:
+    6.1 Create a separate class file to hold the four data items of the Data Structure (use the Data Structure Matrix as a guide).
+    Use private properties for the fields which must be of type “string”. The class file must have separate setters and getters,
+    add an appropriate IComparable for the Name attribute. Save the class as “Information.cs”. 
+ */
 namespace WikiData
 {
-    // 6.1 Create a separate class file to hold the four data items of the Data Structure (use the Data Structure Matrix as a guide).
-    // Use private properties for the fields which must be of type “string”. The class file must have separate setters and getters,
-    // add an appropriate IComparable for the Name attribute. Save the class as “Information.cs”. 
     internal class Information : IComparable<Information>
     {
         #region ATTRIBUTES
@@ -57,7 +61,27 @@ namespace WikiData
         // class as the Type parameter.
         public int CompareTo(Information compareName)
         {
-            return name.CompareTo(compareName.name);
+            return name.CompareTo(compareName.name); // for searching
+        }
+
+        // Default constructor
+        public Information()
+        { }
+
+        // 2nd constructors --- same name but uniqure signature.
+        public Information(string newName)
+        {
+            name = newName;  // this.xxxx no necessary
+            category = "";
+            structure = "";
+            definition = "";
+        }
+        public Information(string newName, string newCateory, string newStructure, string newDefinition)
+        {
+            name = newName;
+            category = newCateory;
+            structure = newStructure;
+            definition = newDefinition;
         }
     }
 }
