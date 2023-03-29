@@ -87,22 +87,24 @@ namespace WikiData
             try
             {
                 int selectedIndex = lvDisplay.SelectedIndices[0];
-
                 Information editData = new Information();
+
                 editData.setName(txtName.Text);
                 editData.setCategory(cboCategory.Text);
                 editData.setStructure(getStructure());
                 editData.setDefinition(txtDefinition.Text);
-                wiki.RemoveAt(selectedIndex); // Remove the old one, then add the new one.
-                wiki.Add(editData);
+                //wiki.RemoveAt(selectedIndex); // Remove the old one, then add the new one.
+                //wiki.Add(editData);
+
+                wiki[selectedIndex] = editData; // Replace obj.
                 stsMsglbl.Text = "Successfully edited";
                 DisplayData();
+                ClearResetInput();
             }
             catch
             {
                 stsMsglbl.Text = "Please select a record to be edited..";
             }
-
         }
         #endregion
 
@@ -118,7 +120,6 @@ namespace WikiData
                 stsMsglbl.Text = "Please enter a data structure name";
                 return;
             }
-
             Information searchData = new Information();  // Create object.
             searchData.setName(txtSearch.Text.ToLower());
             int foundIndex = wiki.BinarySearch(searchData);
