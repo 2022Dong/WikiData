@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 /*Dongyun Huang 30042104
- 29/3/2023
+ 5/4/2023
 
 Programming Criteria:
     6.1 Create a separate class file to hold the four data items of the Data Structure (use the Data Structure Matrix as a guide).
@@ -61,7 +61,7 @@ namespace WikiData
         // class as the Type parameter.
         public int CompareTo(Information compareName)
         {
-            return name.CompareTo(compareName.name); // for searching
+            return name.CompareTo(compareName.name); // equal is 0.
         }
 
         // Default constructor
@@ -71,7 +71,7 @@ namespace WikiData
         // 2nd constructors --- same name but uniqure signature.
         public Information(string newName)
         {
-            name = newName;  // this.xxxx no necessary
+            name = newName;  // this.xxxx is no necessary
             category = "";
             structure = "";
             definition = "";

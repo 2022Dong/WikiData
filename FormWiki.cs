@@ -128,30 +128,6 @@ namespace WikiData
             {
                 stsMsglbl.Text = "Please select a record to be edited..";
             }
-
-
-            /*stsMsglbl.Text = "";
-            try
-            {
-                int selectedIndex = lvDisplay.SelectedIndices[0];
-                Information editData = new Information();
-
-                editData.setName(txtName.Text);
-                editData.setCategory(cboCategory.Text);
-                editData.setStructure(getStructure());
-                editData.setDefinition(txtDefinition.Text);
-                //wiki.RemoveAt(selectedIndex); // Remove the old one, then add the new one.
-                //wiki.Add(editData);
-
-                wiki[selectedIndex] = editData; // Replace obj.
-                stsMsglbl.Text = "Successfully edited";
-                DisplayData();
-                ClearResetInput();
-            }
-            catch
-            {
-                stsMsglbl.Text = "Please select a record to be edited..";
-            }*/
         }
         #endregion
 
@@ -329,14 +305,10 @@ namespace WikiData
         // and returns a Boolean after checking for duplicates.Use the built in List<T> method “Exists” to answer this requirement.
         private bool ValidName(string newName)
         {
-            foreach (Information data in wiki)
-            {
-                if (wiki.Exists(x => x.getName() == newName.ToLower()))
-                {
-                    return false;
-                }
-            }
-            return true;
+            if (wiki.Exists(x => x.getName() == newName.ToLower())) // No need to use "foreach (Information data in wiki)" go through each element.
+                return false;
+            else
+                return true;
         }
 
         // 6.6 Create two methods to highlight and return the values from the Radio button GroupBox.  ---- TO BE CONFIRMED, should the two method go to the information class?
@@ -371,7 +343,6 @@ namespace WikiData
                 {
                     rbo.Checked = false;
                 }
-
             }
         }
 
@@ -380,7 +351,7 @@ namespace WikiData
         private void DisplayData()
         {
             lvDisplay.Items.Clear();
-            wiki.Sort();
+            wiki.Sort(); // Becuse of using Icomparabel, so it can be sorted by Name column.
             foreach (var data in wiki)
             {
                 ListViewItem item = new ListViewItem(data.getName());
