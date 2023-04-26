@@ -37,8 +37,6 @@
             this.lvDisplay = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.structure = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.definition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
@@ -57,10 +55,9 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(16, 15);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOpen.Location = new System.Drawing.Point(12, 12);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(100, 28);
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 0;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -68,10 +65,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(141, 15);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(106, 12);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 28);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -79,10 +75,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(216, 60);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(162, 49);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 28);
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -90,10 +85,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(376, 487);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(282, 396);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 28);
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -101,10 +95,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(604, 487);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Location = new System.Drawing.Point(453, 396);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(100, 28);
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -112,10 +105,9 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(496, 487);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEdit.Location = new System.Drawing.Point(372, 396);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 28);
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 5;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -125,14 +117,11 @@
             // 
             this.lvDisplay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
-            this.category,
-            this.structure,
-            this.definition});
+            this.category});
             this.lvDisplay.HideSelection = false;
-            this.lvDisplay.Location = new System.Drawing.Point(376, 20);
-            this.lvDisplay.Margin = new System.Windows.Forms.Padding(4);
+            this.lvDisplay.Location = new System.Drawing.Point(282, 16);
             this.lvDisplay.Name = "lvDisplay";
-            this.lvDisplay.Size = new System.Drawing.Size(327, 425);
+            this.lvDisplay.Size = new System.Drawing.Size(246, 346);
             this.lvDisplay.TabIndex = 6;
             this.lvDisplay.UseCompatibleStateImageBehavior = false;
             this.lvDisplay.View = System.Windows.Forms.View.Details;
@@ -146,49 +135,36 @@
             // 
             this.category.Text = "Category";
             // 
-            // structure
-            // 
-            this.structure.Text = "Structure";
-            // 
-            // definition
-            // 
-            this.definition.Text = "Definition";
-            // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(16, 63);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Location = new System.Drawing.Point(12, 51);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(161, 22);
+            this.txtSearch.Size = new System.Drawing.Size(122, 20);
             this.txtSearch.TabIndex = 7;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(16, 118);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Location = new System.Drawing.Point(12, 96);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(161, 22);
+            this.txtName.Size = new System.Drawing.Size(122, 20);
             this.txtName.TabIndex = 8;
             this.txtName.DoubleClick += new System.EventHandler(this.txtName_DoubleClick);
             // 
             // cboCategory
             // 
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(17, 175);
-            this.cboCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCategory.Location = new System.Drawing.Point(13, 142);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(160, 24);
+            this.cboCategory.Size = new System.Drawing.Size(121, 21);
             this.cboCategory.TabIndex = 9;
             // 
             // gbStructure
             // 
             this.gbStructure.Controls.Add(this.rdoNonLinear);
             this.gbStructure.Controls.Add(this.rdoLinear);
-            this.gbStructure.Location = new System.Drawing.Point(17, 234);
-            this.gbStructure.Margin = new System.Windows.Forms.Padding(4);
+            this.gbStructure.Location = new System.Drawing.Point(13, 190);
             this.gbStructure.Name = "gbStructure";
-            this.gbStructure.Padding = new System.Windows.Forms.Padding(4);
-            this.gbStructure.Size = new System.Drawing.Size(267, 123);
+            this.gbStructure.Size = new System.Drawing.Size(200, 100);
             this.gbStructure.TabIndex = 10;
             this.gbStructure.TabStop = false;
             this.gbStructure.Text = "Structure";
@@ -196,10 +172,9 @@
             // rdoNonLinear
             // 
             this.rdoNonLinear.AutoSize = true;
-            this.rdoNonLinear.Location = new System.Drawing.Point(41, 81);
-            this.rdoNonLinear.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoNonLinear.Location = new System.Drawing.Point(31, 66);
             this.rdoNonLinear.Name = "rdoNonLinear";
-            this.rdoNonLinear.Size = new System.Drawing.Size(90, 20);
+            this.rdoNonLinear.Size = new System.Drawing.Size(73, 17);
             this.rdoNonLinear.TabIndex = 1;
             this.rdoNonLinear.TabStop = true;
             this.rdoNonLinear.Text = "Non-linear";
@@ -208,10 +183,9 @@
             // rdoLinear
             // 
             this.rdoLinear.AutoSize = true;
-            this.rdoLinear.Location = new System.Drawing.Point(41, 36);
-            this.rdoLinear.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoLinear.Location = new System.Drawing.Point(31, 29);
             this.rdoLinear.Name = "rdoLinear";
-            this.rdoLinear.Size = new System.Drawing.Size(65, 20);
+            this.rdoLinear.Size = new System.Drawing.Size(54, 17);
             this.rdoLinear.TabIndex = 0;
             this.rdoLinear.TabStop = true;
             this.rdoLinear.Text = "Linear";
@@ -219,40 +193,36 @@
             // 
             // txtDefinition
             // 
-            this.txtDefinition.Location = new System.Drawing.Point(17, 393);
-            this.txtDefinition.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDefinition.Location = new System.Drawing.Point(13, 319);
             this.txtDefinition.Multiline = true;
             this.txtDefinition.Name = "txtDefinition";
-            this.txtDefinition.Size = new System.Drawing.Size(307, 136);
+            this.txtDefinition.Size = new System.Drawing.Size(231, 111);
             this.txtDefinition.TabIndex = 11;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(216, 118);
-            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Location = new System.Drawing.Point(162, 96);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(44, 16);
+            this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 12;
             this.lblName.Text = "Name";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(216, 175);
-            this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategory.Location = new System.Drawing.Point(162, 142);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(62, 16);
+            this.lblCategory.Size = new System.Drawing.Size(49, 13);
             this.lblCategory.TabIndex = 13;
             this.lblCategory.Text = "Category";
             // 
             // lblDefinition
             // 
             this.lblDefinition.AutoSize = true;
-            this.lblDefinition.Location = new System.Drawing.Point(17, 366);
-            this.lblDefinition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDefinition.Location = new System.Drawing.Point(13, 297);
             this.lblDefinition.Name = "lblDefinition";
-            this.lblDefinition.Size = new System.Drawing.Size(62, 16);
+            this.lblDefinition.Size = new System.Drawing.Size(51, 13);
             this.lblDefinition.TabIndex = 14;
             this.lblDefinition.Text = "Definition";
             // 
@@ -261,24 +231,23 @@
             this.stsMsg.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsMsg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stsMsglbl});
-            this.stsMsg.Location = new System.Drawing.Point(0, 536);
+            this.stsMsg.Location = new System.Drawing.Point(0, 435);
             this.stsMsg.Name = "stsMsg";
-            this.stsMsg.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.stsMsg.Size = new System.Drawing.Size(748, 26);
+            this.stsMsg.Size = new System.Drawing.Size(561, 22);
             this.stsMsg.TabIndex = 15;
             this.stsMsg.Text = "Feedback";
             // 
             // stsMsglbl
             // 
             this.stsMsglbl.Name = "stsMsglbl";
-            this.stsMsglbl.Size = new System.Drawing.Size(72, 20);
+            this.stsMsglbl.Size = new System.Drawing.Size(57, 17);
             this.stsMsglbl.Text = "Feedback";
             // 
             // FormWiki
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 562);
+            this.ClientSize = new System.Drawing.Size(561, 457);
             this.Controls.Add(this.stsMsg);
             this.Controls.Add(this.lblDefinition);
             this.Controls.Add(this.lblCategory);
@@ -295,10 +264,10 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpen);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormWiki";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wiki";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWiki_FormClosing);
             this.Load += new System.EventHandler(this.FormWiki_Load);
             this.gbStructure.ResumeLayout(false);
             this.gbStructure.PerformLayout();
@@ -331,8 +300,6 @@
         private System.Windows.Forms.StatusStrip stsMsg;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader category;
-        private System.Windows.Forms.ColumnHeader structure;
-        private System.Windows.Forms.ColumnHeader definition;
         private System.Windows.Forms.ToolStripStatusLabel stsMsglbl;
     }
 }

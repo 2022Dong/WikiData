@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,11 @@ namespace WikiData
         {
             InitializeComponent();
         }
+        // Create Trace file.
+        TextWriterTraceListener myTraceListener = new TextWriterTraceListener("TraceFile.txt", "myTraceListener");
+        //static Stream myTrace = File.Create("TraceFile.txt");
+        //TextWriterTraceListener myTraceListener = new TextWriterTraceListener(myTrace);
+
         // 6.2 Create a global List<T> of type Information called Wiki.
         List<Information> wiki = new List<Information>();
 
@@ -28,6 +34,7 @@ namespace WikiData
         // ComboBox for the Category, Radio group for the Structure and Multiline TextBox for the Definition. 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Trace.Listeners.Add(myTraceListener);
             stsMsglbl.Text = "";
             Information addData = new Information();
             if (!string.IsNullOrEmpty(txtName.Text))
@@ -46,11 +53,13 @@ namespace WikiData
                 }
                 else
                 {
+                    Trace.WriteLine("add method() : duplicata name");
                     stsMsglbl.Text = "Add failed, duplicata name";
                 }
             }
             else
             {
+                Trace.WriteLine("add method() : empty input");
                 stsMsglbl.Text = "Please enter a name...";
             }
 
@@ -62,6 +71,7 @@ namespace WikiData
         private void btnDelete_Click(object sender, EventArgs e)
         {
             stsMsglbl.Text = "";
+            Trace.Listeners.Add(myTraceListener);
             try
             {
                 int selectedIndex = lvDisplay.SelectedIndices[0];
@@ -76,6 +86,7 @@ namespace WikiData
             }
             catch
             {
+                Trace.WriteLine("delete method(): unselected");
                 stsMsglbl.Text = "Please select a record to be deleted..";
             }
         }
@@ -84,25 +95,28 @@ namespace WikiData
         // Display an updated version of the sorted list at the end of this process. 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            // Get the selected item in the ListView control
-            ListViewItem selectedItem = lvDisplay.SelectedItems[0];
-
-            // Get the new values from the input controls
-            string name = txtName.Text.ToLower().Trim();
-
-            // Check if the new name is already in use by another item
-            bool isDuplicate = false;
-            foreach (ListViewItem item in lvDisplay.Items)
-            {
-                if (item != selectedItem && item.SubItems[0].Text == name) // Exclusive the selected item
-                {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-
+            stsMsglbl.Text = "";
+            Trace.Listeners.Add(myTraceListener);
             try
             {
+                // Get the selected item in the ListView control
+                ListViewItem selectedItem = lvDisplay.SelectedItems[0];
+
+                // Get the new values from the input controls
+                string name = txtName.Text.ToLower().Trim();
+
+                // Check if the new name is already in use by another item
+                bool isDuplicate = false;
+                foreach (ListViewItem item in lvDisplay.Items)
+                {
+                    if (item != selectedItem && item.SubItems[0].Text == name) // Exclusive the selected item
+                    {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+
                 // If the name is not a duplicate, update the selected item
                 if (!isDuplicate)
                 {
@@ -121,11 +135,13 @@ namespace WikiData
                 }
                 else
                 {
+                    Trace.WriteLine("edit method(): duplicata name");
                     stsMsglbl.Text = "Edit failed, duplicata name";
                 }
             }
             catch
             {
+                Trace.WriteLine("edit method(): unselected.");
                 stsMsglbl.Text = "Please select a record to be edited..";
             }
         }
@@ -160,9 +176,9 @@ namespace WikiData
             else
             {
                 stsMsglbl.Text = "Not found";
-                txtSearch.Clear();
-                txtSearch.Focus();
             }
+            txtSearch.Clear();
+            txtSearch.Focus();
         }
         #endregion
 
@@ -193,7 +209,7 @@ namespace WikiData
                         {
                             Information data = new Information();
                             data.setName(br.ReadString());
-                            data.setCategory(br.ReadString()); // -- To be fixed.
+                            data.setCategory(br.ReadString());
                             data.setStructure(br.ReadString());
                             data.setDefinition(br.ReadString());
                             wiki.Add(data);
@@ -234,7 +250,7 @@ namespace WikiData
                         foreach (var data in wiki)
                         {
                             bw.Write(data.getName());
-                            bw.Write(data.getCategory());//  -- To be fixed.
+                            bw.Write(data.getCategory());
                             bw.Write(data.getStructure());
                             bw.Write(data.getDefinition());
                         }
@@ -375,6 +391,21 @@ namespace WikiData
             txtDefinition.Clear();
             txtName.Focus();
         }
+        // Tracing doc.
+        private void FormWiki_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Save trace file dialog
+            SaveFileDialog SaveTestFile = new SaveFileDialog();
+            SaveTestFile.InitialDirectory = Application.StartupPath;
+            SaveTestFile.Title = "Save your test file";
+            DialogResult sf = SaveTestFile.ShowDialog();
+
+            // Must close <- no USING keyword
+            Trace.Close();
+        }
+
         #endregion
+
+
     }
 }
